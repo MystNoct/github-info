@@ -1,0 +1,12 @@
+<ul class="user-list">
+    <li *ngFor="let user of users" class="user-item">
+      <a [href]="user.html_url" target="_blank">
+        <img [src]="user.avatar_url" alt="{{ user.login }}'s avatar" class="avatar" />
+        <span class="username">{{ user.login }}</span>
+        <span class="followers" *ngIf="user.followersCount !== undefined">
+          {{ user.followersCount }} followers
+        </span>
+      </a>
+    </li>
+  </ul>
+  

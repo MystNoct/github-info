@@ -1,0 +1,41 @@
+.user-list {
+    padding: 0;             /* Remove default padding */
+    margin: 0;              /* Remove default margin */
+    display: grid;          /* Use grid layout */
+    gap: 20px;              /* Space between items */
+  }
+  
+  .user-item {
+    background-color: #f8f9fa; /* Light gray background */
+    border: 1px solid #dee2e6; /* Light border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 20px;             /* Padding inside items */
+    display: flex;             /* Flexbox for inner alignment */
+    align-items: center;       /* Center items vertically */
+    text-decoration: none;     /* Remove link underline */
+    color: #333;               /* Dark text color */
+  }
+  
+  .avatar {
+    width: 50px;              /* Width for avatar */
+    height: 50px;             /* Height for avatar */
+    border-radius: 50%;       /* Circular shape */
+    margin-right: 15px;       /* Space between image and text */
+  }
+  
+  .username {
+    font-size: 1.2em;         /* Larger font size for username */
+    font-weight: bold;        /* Bold username */
+    margin-right: 5px;       /* Space after username */
+  }
+  
+  .followers {
+    color: #6c757d;           /* Muted text color for followers */
+    font-size: 1em;           /* Adjusted font size for followers */
+  }
+  
+  /* Remove colors on hover */
+  .user-item a:hover {
+    color: inherit;           /* Inherit text color */
+  }
+  

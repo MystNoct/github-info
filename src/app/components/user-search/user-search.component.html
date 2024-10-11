@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Search GitHub Users</h2>
+    <div class="search">
+        <input type="text" [(ngModel)]="query" placeholder="Enter username here" />
+        <button (click)="searchUsers()">Search</button>
+    </div>
+
+    @if (error) {
+      <div class="error">{{ error }}</div>
+    }
+    
+    @if (users.length > 0) {
+      <app-users [users]="users" />
+    }
+  </div>

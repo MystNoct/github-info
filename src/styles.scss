@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'MonaSans';
+    src: url('/assets/fonts/Mona-Sans.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: 'MonaSans', sans-serif; /* Aplica la fuente al body */
+  }
+  
+  input,
+  textarea,
+  select,
+  button {
+    font-family: 'MonaSans', sans-serif; /* Aplica la fuente a inputs, textareas y selects */
+    font-size: 16px; /* Tamaño de fuente ajustable */
+  }
+  
+  /* Estilo para el placeholder */
+  input::placeholder,
+  textarea::placeholder {
+    font-family: 'MonaSans', sans-serif; /* Aplica la fuente al placeholder */
+  }
+  
+  /* Para navegadores que requieren prefijos */
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-family: 'MonaSans', sans-serif;
+  }
+  
+  ::-moz-placeholder { /* Firefox 19+ */
+    font-family: 'MonaSans', sans-serif;
+  }
+  
+  :-ms-input-placeholder { /* IE 10+ */
+    font-family: 'MonaSans', sans-serif;
+  }
+  
+  :-moz-placeholder { /* Firefox 18- */
+    font-family: 'MonaSans', sans-serif;
+  }
+  

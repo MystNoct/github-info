@@ -3,9 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { UserComponent } from '../user/user.component';
-import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-search',
@@ -14,12 +11,15 @@ import { map, catchError } from 'rxjs/operators';
   templateUrl: './user-search.component.html',
   styleUrls: ['./user-search.component.scss']
 })
+
 export class UserSearchComponent {
   query: string = '';      // Nombre de usuario a buscar
   users: any[] = [];       // Lista de usuarios encontrados
   error: string = '';      // Mensaje de error si hay algún problema
+  pageSize: number = 10;   // Tamaño de la página (usuarios por página)
+  page: number = 1;        // Número de página actual
 
-  constructor(private apiService: ApiService, private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
   searchUsers(): void {
     this.error = '';
@@ -35,33 +35,45 @@ export class UserSearchComponent {
       return;
     }
 
-    this.apiService.searchUsers(trimmedQuery).subscribe(
+    this.page = 1;
+    this.loadUsers();
+  }
+
+  loadUsers(): void {
+    this.apiService.searchUsers(this.query, this.pageSize, this.page).subscribe(
       (data) => {
         this.users = data.items;
-        this.fetchFollowers(); // Fetch followers after user data is updated
+        this.loadFollowers();
       },
       (error) => {
+        console.error('Error fetching users:', error);
         this.error = 'An error occurred while fetching users. Please try again.';
         this.users = [];
       }
     );
   }
 
-  fetchFollowers(): void {
-    const requests: Observable<any>[] = this.users.map(user =>
-      this.http.get(user.followers_url).pipe(
-        map((data: any) => {
-          return { ...user, followersCount: data.length }; // Count of followers
-        }),
-        catchError(error => {
-          console.error('Error fetching followers:', error);
-          return of({ ...user, followersCount: 0 }); // Default to 0 on error
-        })
-      )
+  loadFollowers(): void {
+    this.apiService.fetchFollowers(this.users).subscribe(
+      (usersWithFollowers) => {
+        this.users = usersWithFollowers;
+      },
+      (error) => {
+        console.error('Error fetching followers:', error);
+        this.error = 'An error occurred while fetching followers.';
+      }
     );
+  }
 
-    forkJoin(requests).subscribe(usersWithFollowers => {
-      this.users = usersWithFollowers;
-    });
+  nextPage(): void {
+    this.page++;
+    this.loadUsers();
+  }
+
+  previousPage(): void {
+    if (this.page > 1) {
+      this.page--;
+      this.loadUsers();
+    }
   }
 }

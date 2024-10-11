@@ -1,8 +1,8 @@
 <div class="container">
-    <h2>Search GitHub Users</h2>
-    <div class="search">
-        <input type="text" [(ngModel)]="query" placeholder="Enter username here" />
-        <button (click)="searchUsers()">Search</button>
+    <h2 class="title">Search GitHub Users</h2>
+    <div class="search-bar">
+        <input type="text" class="search-input" [(ngModel)]="query" placeholder="Enter username here" />
+        <button class="search-button" (click)="searchUsers()">Search</button>
     </div>
 
     @if (error) {
@@ -12,4 +12,12 @@
     @if (users.length > 0) {
       <app-users [users]="users" />
     }
+
+    @if (users.length >= pageSize) {
+      <div class="pagination-buttons">
+        <button (click)="previousPage()" [disabled]="page === 1">Previous</button>
+        <button (click)="nextPage()">Next</button>
+      </div>
+    }
+    
   </div>

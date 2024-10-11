@@ -6,37 +6,38 @@
   }
   
   body {
-    font-family: 'MonaSans', sans-serif; /* Aplica la fuente al body */
+    font-family: 'MonaSans', sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
   }
   
   input,
   textarea,
   select,
   button {
-    font-family: 'MonaSans', sans-serif; /* Aplica la fuente a inputs, textareas y selects */
-    font-size: 16px; /* Tamaño de fuente ajustable */
+    font-family: 'MonaSans', sans-serif;
+    font-size: 16px;
   }
   
-  /* Estilo para el placeholder */
+
   input::placeholder,
   textarea::placeholder {
-    font-family: 'MonaSans', sans-serif; /* Aplica la fuente al placeholder */
-  }
-  
-  /* Para navegadores que requieren prefijos */
-  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     font-family: 'MonaSans', sans-serif;
   }
   
-  ::-moz-placeholder { /* Firefox 19+ */
+
+  ::-webkit-input-placeholder {
     font-family: 'MonaSans', sans-serif;
   }
   
-  :-ms-input-placeholder { /* IE 10+ */
+  ::-moz-placeholder {
     font-family: 'MonaSans', sans-serif;
   }
   
-  :-moz-placeholder { /* Firefox 18- */
+  :-ms-input-placeholder {
+    font-family: 'MonaSans', sans-serif;
+  }
+  
+  :-moz-placeholder {
     font-family: 'MonaSans', sans-serif;
   }
   

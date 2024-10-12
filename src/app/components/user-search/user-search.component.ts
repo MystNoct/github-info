@@ -2,24 +2,34 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { UserSelectionService } from '../../services/user-selection.service';
 import { UserComponent } from '../user/user.component';
+import { UserInfoModalComponent } from '../user-info-modal/user-info-modal.component';
 
 @Component({
   selector: 'app-user-search',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserComponent],
+  imports: [CommonModule, FormsModule, UserComponent, UserInfoModalComponent],
   templateUrl: './user-search.component.html',
   styleUrls: ['./user-search.component.scss']
 })
 
 export class UserSearchComponent {
-  query: string = '';      // Nombre de usuario a buscar
-  users: any[] = [];       // Lista de usuarios encontrados
-  error: string = '';      // Mensaje de error si hay algún problema
-  pageSize: number = 10;   // Tamaño de la página (usuarios por página)
-  page: number = 1;        // Número de página actual
+  query: string = '';
+  users: any[] = [];      
+  error: string = '';   
+  pageSize: number = 10;
+  page: number = 1;
+  selectedUser: any = null;
+  isModalOpen: boolean = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private userSelectionService: UserSelectionService) {}
+
+  ngOnInit(): void {
+    this.userSelectionService.userSelected$.subscribe((user) => {
+      this.openModal(user);
+    });
+  }
 
   searchUsers(): void {
     this.error = '';
@@ -75,5 +85,15 @@ export class UserSearchComponent {
       this.page--;
       this.loadUsers();
     }
+  }
+
+  openModal(user: any): void {
+    this.selectedUser = user;
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.selectedUser = null;
+    this.isModalOpen = false;
   }
 }

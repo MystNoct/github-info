@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { UserSelectionService } from '../../services/user-selection.service';
 
 @Component({
   selector: 'app-users',
@@ -11,4 +12,10 @@ import { CommonModule } from '@angular/common';
 
 export class UserComponent {
   @Input() users: any[] = [];
+
+  constructor(private userSelectionService: UserSelectionService) {}
+
+  onUserClick(user: any): void {
+    this.userSelectionService.selectUser(user);
+  }
 }

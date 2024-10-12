@@ -6,13 +6,14 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiService {
-  private apiUrl = 'https://api.github.com/search/users';
+  private apiUrl = 'https://api.github.com';
 
   constructor(private http: HttpClient) {}
 
   searchUsers(query: string, per_page: number = 10, page: number = 1): Observable<any> {
-    const url = `${this.apiUrl}?q=${query}&per_page=${per_page}&page=${page}`;
+    const url = `${this.apiUrl}/search/users?q=${query}&per_page=${per_page}&page=${page}`;
     return this.http.get<any>(url);
   }
   
@@ -32,4 +33,14 @@ export class ApiService {
 
     return forkJoin(requests);
   }
+
+  getUserDetails(username: string): Observable<any> {
+    const url = `${this.apiUrl}/search/users/${username}`;
+    return this.http.get<any>(url);
+  }
+
+  getUserRepos(username: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/users/${username}/repos`);
+  }
+  
 }

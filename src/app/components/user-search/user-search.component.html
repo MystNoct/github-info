@@ -10,7 +10,7 @@
     }
     
     @if (users.length > 0) {
-      <app-users [users]="users" />
+      <app-users [users]="users"/>
     }
 
     @if (users.length >= pageSize) {
@@ -19,5 +19,8 @@
         <button (click)="nextPage()">Next</button>
       </div>
     }
-    
+
+    @if (isModalOpen) {
+      <app-user-info-modal *ngIf="isModalOpen" [user]="selectedUser" (close)="closeModal()"/>
+    }
   </div>

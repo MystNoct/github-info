@@ -21,6 +21,6 @@
     }
 
     @if (isModalOpen) {
-      <app-user-info-modal *ngIf="isModalOpen" [user]="selectedUser" (close)="closeModal()"/>
+      <app-user-info-modal [user]="selectedUser" (close)="closeModal()"/>
     }
   </div>

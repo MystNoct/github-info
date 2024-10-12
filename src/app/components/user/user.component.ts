@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { UserSelectionService } from '../../services/user-selection.service';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })

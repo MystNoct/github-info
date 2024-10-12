@@ -1,7 +1,6 @@
 <ul class="user-list">
   @for (user of users; track user.id) {
     <li class="user-item" (click)="onUserClick(user)">
-      <!-- <a [href]="user.html_url" target="_blank"> -->
         <img [src]="user.avatar_url" alt="{{ user.login }}'s avatar" class="avatar" />
         <div class="user-info">
           <span class="username">{{ user.login }}</span>
@@ -11,7 +10,6 @@
             </span>
           }
         </div>
-      <!-- </a> -->
     </li>
   }
 </ul>

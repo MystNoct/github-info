@@ -1,14 +1,14 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-info-modal',
   templateUrl: './user-info-modal.component.html',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   styleUrls: ['./user-info-modal.component.scss']
 })
+
 export class UserInfoModalComponent implements OnInit {
   @Input() user: any;
   @Output() close = new EventEmitter<void>();

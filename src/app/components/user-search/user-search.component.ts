@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { UserSelectionService } from '../../services/user-selection.service';
@@ -9,7 +8,7 @@ import { UserInfoModalComponent } from '../user-info-modal/user-info-modal.compo
 @Component({
   selector: 'app-user-search',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserComponent, UserInfoModalComponent],
+  imports: [FormsModule, UserComponent, UserInfoModalComponent],
   templateUrl: './user-search.component.html',
   styleUrls: ['./user-search.component.scss']
 })

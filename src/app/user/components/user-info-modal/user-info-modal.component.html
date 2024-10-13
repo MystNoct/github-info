@@ -1,0 +1,25 @@
+<div class="modal">
+  <div class="modal-content">
+    <button class="modal-close-button" (click)="closeModal()">Close</button>
+    <h2 class="modal-username">{{ user.login }}</h2>
+    <img class="modal-avatar" [src]="user.avatar_url" />
+
+    <h3>Repositories</h3>
+    <div class="repos-container">
+      @if (loadingRepos) {
+      <div>Loading repositories...</div>
+      } @if (!loadingRepos && repos.length > 0) {
+      <ul>
+        @for (repo of repos; track repo.id) {
+        <li>
+          <a [href]="repo.html_url" target="_blank">{{ repo.name }}</a>
+          <p>{{ repo.description }}</p>
+        </li>
+        }
+      </ul>
+      } @if (!loadingRepos && repos.length === 0) {
+      <diV>No repositories found.</diV>
+      }
+    </div>
+  </div>
+</div>

@@ -1,12 +1,12 @@
 .user-list {
-  padding: 0;                       
-  display: flex;           
-  flex-direction: column;  
-  align-items: stretch;    
-  gap: 20px;               
-  width: 60vw;            
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 20px;
+  width: 60vw;
   max-width: 800px;
-  min-width: 400px;       
+  min-width: 400px;
 }
 
 .user-item {
@@ -18,13 +18,9 @@
   align-items: center;
   text-decoration: none;
   color: #333;
-
-  a {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    text-decoration: none;
-    color: inherit;
+  cursor: pointer;
+  &:hover {
+    background-color: #dee2e6;
   }
 }
 

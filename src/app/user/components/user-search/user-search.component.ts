@@ -1,31 +1,34 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ApiService } from '../../services/api.service';
-import { UserSelectionService } from '../../services/user-selection.service';
 import { UserComponent } from '../user/user.component';
 import { UserInfoModalComponent } from '../user-info-modal/user-info-modal.component';
+import { ApiService } from '../../services/api/api.service';
+import { UserInfoService } from '../../services/user-info/user-selection.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-user-search',
   standalone: true,
   imports: [FormsModule, UserComponent, UserInfoModalComponent],
   templateUrl: './user-search.component.html',
-  styleUrls: ['./user-search.component.scss']
+  styleUrls: ['./user-search.component.scss'],
 })
-
 export class UserSearchComponent {
   query: string = '';
-  users: any[] = [];      
-  error: string = '';   
+  users: User[] = [];
+  error: string = '';
   pageSize: number = 10;
   page: number = 1;
-  selectedUser: any = null;
+  selectedUser: User | null = null;
   isModalOpen: boolean = false;
 
-  constructor(private apiService: ApiService, private userSelectionService: UserSelectionService) {}
+  constructor(
+    private apiService: ApiService,
+    private userInfoService: UserInfoService
+  ) {}
 
   ngOnInit(): void {
-    this.userSelectionService.userSelected$.subscribe((user) => {
+    this.userInfoService.userInfo$.subscribe((user) => {
       this.openModal(user);
     });
   }
@@ -39,7 +42,7 @@ export class UserSearchComponent {
       return;
     }
 
-    if (trimmedQuery === "flowww") {
+    if (trimmedQuery === 'flowww') {
       this.error = '*flowww is not a valid username.';
       return;
     }
@@ -56,7 +59,8 @@ export class UserSearchComponent {
       },
       (error) => {
         console.error('Error fetching users:', error);
-        this.error = 'An error occurred while fetching users. Please try again.';
+        this.error =
+          'An error occurred while fetching users. Please try again.';
         this.users = [];
       }
     );
@@ -86,7 +90,7 @@ export class UserSearchComponent {
     }
   }
 
-  openModal(user: any): void {
+  openModal(user: User): void {
     this.selectedUser = user;
     this.isModalOpen = true;
   }

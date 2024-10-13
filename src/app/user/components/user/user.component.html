@@ -1,0 +1,16 @@
+<ul class="user-list">
+  @for (user of users; track user.id) {
+  <li class="user-item" (click)="onUserClick(user)">
+    <img
+      [src]="user.avatar_url"
+      class="avatar"
+    />
+    <div class="user-info">
+      <span class="username">{{ user.login }}</span>
+      @if (user.followersCount !== undefined) {
+      <span class="followers"> {{ user.followersCount }} followers </span>
+      }
+    </div>
+  </li>
+  }
+</ul>

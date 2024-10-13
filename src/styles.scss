@@ -1,43 +1,21 @@
-@font-face {
-    font-family: 'MonaSans';
-    src: url('/assets/fonts/Mona-Sans.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  body {
-    font-family: 'MonaSans', sans-serif;
-    background: linear-gradient(135deg, #e0eafc, #cfdef3);
-  }
-  
-  input,
-  textarea,
-  select,
-  button {
-    font-family: 'MonaSans', sans-serif;
-    font-size: 16px;
-  }
-  
+body {
+  font-family: sans-serif;
+  background: rgb(46,44,46);
+background: linear-gradient(135deg, rgba(46,44,46,1) 75%, rgba(17,150,243,1) 100%);
+  background-attachment: fixed;
+}
 
-  input::placeholder,
-  textarea::placeholder {
-    font-family: 'MonaSans', sans-serif;
-  }
-  
+input,
+button {
+  font-family: sans-serif;
+  font-size: 16px;
+}
 
-  ::-webkit-input-placeholder {
-    font-family: 'MonaSans', sans-serif;
-  }
-  
-  ::-moz-placeholder {
-    font-family: 'MonaSans', sans-serif;
-  }
-  
-  :-ms-input-placeholder {
-    font-family: 'MonaSans', sans-serif;
-  }
-  
-  :-moz-placeholder {
-    font-family: 'MonaSans', sans-serif;
-  }
-  
+input::placeholder,
+textarea::placeholder,
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder,
+:-moz-placeholder {
+  font-family: sans-serif;
+}

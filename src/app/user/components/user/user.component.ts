@@ -1,20 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserSelectionService } from '../../services/user-selection.service';
+import { UserInfoService } from '../../services/user-info/user-selection.service';
 
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [],
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
 })
-
 export class UserComponent {
   @Input() users: any[] = [];
 
-  constructor(private userSelectionService: UserSelectionService) {}
+  constructor(private userInfoService: UserInfoService) {}
 
   onUserClick(user: any): void {
-    this.userSelectionService.selectUser(user);
+    this.userInfoService.saveUserInfo(user);
   }
 }

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../services/api/api.service';
+import { User } from '../../models/user.model';
+import { Repository } from '../../models/repository.model';
 
 @Component({
   selector: 'app-user-info-modal',
@@ -8,11 +10,10 @@ import { ApiService } from '../../services/api.service';
   imports: [],
   styleUrls: ['./user-info-modal.component.scss']
 })
-
 export class UserInfoModalComponent implements OnInit {
-  @Input() user: any;
+  @Input() user!: User; 
   @Output() close = new EventEmitter<void>();
-  repos: any[] = [];
+  repos: Repository[] = [];
   loadingRepos: boolean = true;
 
   constructor(private apiService: ApiService) {}
@@ -24,7 +25,7 @@ export class UserInfoModalComponent implements OnInit {
   getRepos(): void {
     this.loadingRepos = true;
     this.apiService.getUserRepos(this.user.login).subscribe(
-      (repos) => {
+      (repos) => {  
         this.repos = repos;
         this.loadingRepos = false;
       },
